@@ -13,7 +13,7 @@ Give it a GitHub repo and a UX problem. The system will:
 4. Test each variant automatically
 5. Show you live previews of all versions
 
-Traditional A/B testing takes weeks. This takes minutes.
+Traditional testing products usually takes weeks. This takes minutes.
 
 ## How It Works
 
