@@ -173,4 +173,4 @@ Most A/B testing tools require manual coding for each variant. This is the first
 
 ---
 
-Built by [Kuba Rogut](https://github.com/RogutKuba) | Powered by **Daytona** + **Claude Code** + **Browser-use**
+Built by Sathvik Vempati| Powered by **Daytona** + **Claude Code** + **Browser-use**
