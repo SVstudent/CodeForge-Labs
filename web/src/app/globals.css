@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Gradient Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+:root {
+  --radius: 1.2rem;
+  /* Cyberpunk Purple/Blue Theme */
+  --background: #0f0f23;
+  --foreground: #e0e0ff;
+  --card: rgba(30, 30, 60, 0.8);
+  --card-foreground: #e0e0ff;
+  --popover: rgba(20, 20, 40, 0.95);
+  --popover-foreground: #e0e0ff;
+  --primary: #8b5cf6;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(59, 130, 246, 0.2);
+  --secondary-foreground: #93c5fd;
+  --muted: rgba(100, 100, 150, 0.1);
+  --muted-foreground: #9ca3af;
+  --accent: #06b6d4;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: rgba(139, 92, 246, 0.3);
+  --input: rgba(30, 30, 60, 0.6);
+  --ring: #8b5cf6;
+  --chart-1: #8b5cf6;
+  --chart-2: #06b6d4;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #f0f0ff;
+  --card: rgba(40, 40, 80, 0.9);
+  --card-foreground: #f0f0ff;
+  --popover: rgba(20, 20, 40, 0.98);
+  --popover-foreground: #f0f0ff;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(99, 102, 241, 0.3);
+  --secondary-foreground: #c7d2fe;
+  --muted: rgba(150, 150, 200, 0.15);
+  --muted-foreground: #d1d5db;
+  --accent: #14b8a6;
+  --accent-foreground: #ffffff;
+  --destructive: #f87171;
+  --border: rgba(168, 85, 247, 0.4);
+  --input: rgba(40, 40, 80, 0.7);
+  --ring: #a855f7;
+  --chart-1: #a855f7;
+  --chart-2: #14b8a6;
+  --chart-3: #22c55e;
+  --chart-4: #facc15;
+  --chart-5: #f87171;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    outline-color: hsl(var(--ring) / 0.5);
+  }
+  
+  body {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    background-attachment: fixed;
+    color: var(--foreground);
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@layer components {
+  /* Custom Component Styles */
+  .experiment-card {
+    background: rgba(30, 30, 60, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .experiment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .experiment-card:hover::before {
+    left: 100%;
+  }
+
+  .experiment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.6);
+  }
+
+  .gradient-button {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #a855f7 0%, #c084fc 50%, #d946ef 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gradient-button:hover::before {
+    opacity: 1;
+  }
+
+  .gradient-button > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cyber-border {
+    border: 2px solid transparent;
+    background: linear-gradient(rgba(30, 30, 60, 0.8), rgba(30, 30, 60, 0.8)) padding-box,
+                linear-gradient(135deg, #8b5cf6, #06b6d4, #8b5cf6) border-box;
+    border-radius: 1.2rem;
+  }
+
+  .neon-text {
+    color: #e0e0ff;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5),
+                 0 0 20px rgba(139, 92, 246, 0.3),
+                 0 0 30px rgba(139, 92, 246, 0.1);
+  }
+
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
